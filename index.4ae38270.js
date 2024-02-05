@@ -1,0 +1,2 @@
+!function(){var e=document.querySelector(".btn--roll"),t=document.querySelector(".dice"),n=0;e.addEventListener("click",(function(){var e=Math.floor(6*Math.random())+1;r=e,t.textContent=r,t.classList.remove("hidden"),function(e){1===e&&(n=1);currentPlayerValue+=e,document.querySelector("#current--".concat(n)).textContent=currentPlayerValue}(e);var r}))}();
+//# sourceMappingURL=index.4ae38270.js.map
