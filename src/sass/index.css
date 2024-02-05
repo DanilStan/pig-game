@@ -60,7 +60,7 @@ main {
 .score {
   font-size: 8rem;
   font-weight: 300;
-  color: #c7365f;
+  color: #ffffff;
   margin-bottom: auto;
 }
 
@@ -81,7 +81,7 @@ main {
 }
 
 .current {
-  background-color: #c7365f;
+  background-color: #096ecc;
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
@@ -123,6 +123,10 @@ main {
   padding: 0.7rem 2.5rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+  transition: all 0.2s linear;
+}
+.btn:hover {
+  background-color: #7379ed;
 }
 
 .btn::first-letter {
