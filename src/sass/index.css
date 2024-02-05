@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-
+@import '~node_modules/modern-normalize/modern-normalize.css';
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -12,11 +12,11 @@ html {
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-weight: 400;
   height: 100vh;
   color: #333;
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  background: linear-gradient(90deg, rgb(137, 135, 167) 0%, rgb(74, 74, 198) 35%, rgb(0, 212, 255) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,7 +28,8 @@ main {
   width: 100rem;
   height: 60rem;
   background-color: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(200px);
+  -webkit-backdrop-filter: blur(200px);
+          backdrop-filter: blur(200px);
   filter: blur();
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
   border-radius: 9px;
@@ -66,9 +67,11 @@ main {
 .player--active {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
 .player--active .name {
   font-weight: 700;
 }
+
 .player--active .score {
   font-weight: 400;
 }
@@ -113,11 +116,10 @@ main {
   cursor: pointer;
   font-weight: 400;
   transition: all 0.2s;
-
   background-color: white;
   background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   padding: 0.7rem 2.5rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
@@ -132,9 +134,11 @@ main {
 .btn--new {
   top: 4rem;
 }
+
 .btn--roll {
   top: 39.3rem;
 }
+
 .btn--hold {
   top: 46.1rem;
 }
@@ -164,4 +168,4 @@ main {
 .player--winner .name {
   font-weight: 700;
   color: #c7365f;
-}
+}/*# sourceMappingURL=index.css.map */
