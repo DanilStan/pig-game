@@ -23,16 +23,10 @@ function onBtnRollDiceClick() {
 function onBtnHoldClick() {
   if (countPlayer === 0) {
     totalValuePlayerOne += currentPlayerOneValue;
-    document.querySelector(`#score--0`).textContent = totalValuePlayerOne;
-    resetCurrentValue('#current--0', 1);
-    styleCheck();
-    finalGame();
+    displayOnBtnHold(totalValuePlayerOne, 0, 1);
   } else {
     totalValuePlayerTwo += currentPlayerOneValue;
-    document.querySelector(`#score--1`).textContent = totalValuePlayerTwo;
-    resetCurrentValue('#current--1', 0);
-    styleCheck();
-    finalGame();
+    displayOnBtnHold(totalValuePlayerTwo, 1, 0);
   }
   currentPlayerOneValue = 0;
 }
@@ -45,12 +39,11 @@ function onClickNewGame() {
   document.querySelector(`#score--0`).textContent = 0;
   document.querySelector(`#score--1`).textContent = 0;
   diceImageRefs.textContent = 0;
-  document.querySelector('.player--0').classList.remove('player--winner');
-  document.querySelector('.player--1').classList.remove('player--winner');
-  document.querySelector(`.player--0`).classList.add('player--active');
-  holdBtnRefs.disabled = false;
-  btnRollDiceRefs.disabled = false;
-  diceImageRefs.style.display = 'block';
+  classRemoveStyle('.player--0', 'player--winner');
+  classRemoveStyle('.player--1', 'player--winner');
+  classRemoveStyle('.player--1', 'player--active');
+  classAddStyle('.player--0', 'player--active');
+  onDisabledBtn(false, 'block');
 }
 
 function checkRandomNumber(number) {
@@ -69,6 +62,15 @@ function checkRandomNumber(number) {
     currentPlayerOneValue;
 }
 
+function displayOnBtnHold(totalValue, currentPlayerNumber, resetValue) {
+  console.log(totalValuePlayerOne);
+  document.querySelector(`#score--${currentPlayerNumber}`).textContent =
+    totalValue;
+  resetCurrentValue(`#current--${currentPlayerNumber}`, resetValue);
+  styleCheck();
+  finalGame();
+}
+
 function diceMarkup(number) {
   diceImageRefs.textContent = number;
   diceImageRefs.classList.remove('hidden');
@@ -80,28 +82,38 @@ function resetCurrentValue(className, countValue) {
 }
 
 function styleCheck() {
-  if (countPlayer === 0) {
-    document.querySelector(`.player--0`).classList.add('player--active');
-    document.querySelector('.player--1').classList.remove('player--active');
-  } else {
-    document.querySelector(`.player--1`).classList.add('player--active');
-    document.querySelector('.player--0').classList.remove('player--active');
-  }
+  countPlayer === 0
+    ? toggleClass('.player--0', '.player--1', 'player--active')
+    : toggleClass('.player--1', '.player--0', 'player--active');
 }
 
 function finalGame() {
   if (totalValuePlayerOne >= 100) {
-    finalStyle('.player--0', true, 'none');
+    classAddStyle('.player--0', 'player--winner');
+    onDisabledBtn(true, 'none');
   }
 
   if (totalValuePlayerTwo >= 100) {
-    finalStyle('.player--1', true, 'none');
+    classAddStyle('.player--1', 'player--winner');
+    onDisabledBtn(true, 'none');
   }
 }
 
-function finalStyle(namePlayer, btnStatus, diceStyle) {
-  document.querySelector(namePlayer).classList.add('player--winner');
+function classAddStyle(namePlayer, nameClass) {
+  document.querySelector(namePlayer).classList.add(nameClass);
+}
+
+function classRemoveStyle(namePlayer, nameClass) {
+  document.querySelector(namePlayer).classList.remove(nameClass);
+}
+
+function onDisabledBtn(btnStatus, diceStyle) {
   holdBtnRefs.disabled = btnStatus;
   btnRollDiceRefs.disabled = btnStatus;
   diceImageRefs.style.display = diceStyle;
+}
+
+function toggleClass(nameClassAdd, nameClassRemove, nameClass) {
+  document.querySelector(nameClassAdd).classList.add(nameClass);
+  document.querySelector(nameClassRemove).classList.remove(nameClass);
 }
